@@ -1,12 +1,8 @@
 name: Register Outgoing Dependencies
 
-on: 
-  workflow_dispatch:
-    inputs:
-      dep:
-        description: 'Type of service request'
-        required: true
-        default: 'maintenance'
+on:
+  repository_dispatch:
+    types: [register-dependency]
 
 jobs:
    trigger-all-conan-repositories:
