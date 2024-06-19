@@ -1,0 +1,35 @@
+name: Register Outgoing Dependencies
+
+on: 
+  workflow_dispatch:
+    inputs:
+      dep:
+        description: 'Type of service request'
+        required: true
+        default: 'maintenance'
+
+jobs:
+   trigger-all-conan-repositories:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.SESI016301_GH_TOKEN }}
+          submodules: true
+
+      - name: Create data folder if not exits
+        run: |
+          mkdir data
+          
+      - name: Create or Check File and Content
+        run: |
+          if [ ! -f "data/conanOutgoingDep.txt" ]; then
+            echo github.events.inputs.dep > my-folder/conanOutgoingDep.txt
+          else
+            if ! grep -q github.events.inputs.dep data/conanOutgoingDep.txt; then
+              echo github.events.inputs.dep >> data/conanOutgoingDep.txt
+            else
+              echo "String already exists in the file."
+            fi
+          fi
