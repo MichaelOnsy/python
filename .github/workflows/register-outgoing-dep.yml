@@ -22,11 +22,16 @@ jobs:
       - name: Create or Check File and Content
         run: |
           if [ ! -f "data/conanOutgoingDep.txt" ]; then
-            echo github.events.inputs.dep > my-folder/conanOutgoingDep.txt
+            echo github.events.inputs.dep > data/conanOutgoingDep.txt
           else
             if ! grep -q github.events.inputs.dep data/conanOutgoingDep.txt; then
               echo github.events.inputs.dep >> data/conanOutgoingDep.txt
             else
               echo "String already exists in the file."
             fi
-          fi
+          fi  
+      - name: Commit changes to master
+        run: |
+          git add .
+          git commit -m "update outgoing dependency text file"
+          git push
