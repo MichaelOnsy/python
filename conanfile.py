@@ -1,25 +1,3 @@
-Skip to content
-OMEGA
-/
-hackathon-a
-Search or jump to…
-Type / to search
-Code
-Issues
-Pull requests
-Actions
-Wiki
-Security
-Insights
-hackathon-a/conanfile.py
-@SESA624533
-SESA624533 adapt conanfile
-Latest commit 58a0f18 yesterday
- History
- 1 contributor
-72 lines (58 sloc)  2.44 KB
- 
-
 import pathlib
 from conan import ConanFile, tools
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
