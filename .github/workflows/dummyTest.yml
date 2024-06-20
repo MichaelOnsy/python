@@ -1,0 +1,16 @@
+name: Dummy Test
+
+on:
+  pull_request:
+
+jobs:
+  dummy_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        
+      - name: Sleep some time
+        run: |
+          run: sleep 300s
+          shell: bash
